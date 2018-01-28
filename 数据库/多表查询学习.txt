@@ -1,0 +1,66 @@
+1.limit ?,? 
+
+limit 5,10 查询从第6个开始之后的10个数据
+我要查询从第2条至第4条的数据 limit 1,3
+
+2.where
+
+查询部门为计算机系和部门为外语系的同学的成绩
+select * from student where department in ('计算机系','外语系')
+
+查询年龄在18-22范围内的学生的信息
+select * from student where 2017-birth between 18 and 22
+
+
+子查询
+查询嵌套查询
+select * from score where stu_id = 
+	(select id from student where name = '李四')
+
+子查询为多行数据(子查询结果为一个结果集)  使用where 字段 in...
+select * from student where id in 
+	(select stu_id from score where grade < 95 and c_name='计算机')
+
+普通连接方式
+select student.id,name,sex,birth,department,address,c_name,grade from score,student
+	where score.stu_id = student.id
+
+where xxx in 经常使用的方式有两种
+where xxx in (select子查询结果集)
+where xxx in ('xxx','xxx'....)
+
+3.group by
+
+查询每个院系各有多少人
+select department,count(id) from student group by department;
+
+查询每个学生的总成绩
+select student.id,name,sum(grade) from score,student
+	where score.stu_id = student.id
+group by id
+
+查询所有科目平均成绩
+select c_name,avg(grade) from score
+group by c_name
+
+4.order by 
+
+倒序查询计算机成绩	使用order by desc 倒序
+select * from score where c_name = '计算机' 
+	order by grade desc
+
+5.union
+
+合并查询的结果集
+SELECT id  FROM student
+    UNION
+    SELECT stu_id  FROM score;
+select * from score where c_name = '计算机' order by grade desc
+
+6.模糊查询
+
+模糊查询结果作为where条件
+select * from score,student	
+	where (student.name like '张%' or student.name like '王%')
+	and
+	student.id = score.stu_id

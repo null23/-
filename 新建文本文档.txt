@@ -1,0 +1,15 @@
+二叉树	创建平衡二叉树	前中后序遍历  广度优先/层遍历(队列)  翻转二叉树  通过平衡二叉树排序
+队列
+栈
+排序
+线性表
+大数据搜索
+
+HashMap，hash算法，加载因子
+CurrentHashMap	多线程
+HashTable
+ArrayList LinkedList
+
+
+
+
